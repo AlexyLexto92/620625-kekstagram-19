@@ -2,7 +2,7 @@
 (function () {
   var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
   var pictureContainer = document.querySelector('.pictures');
-  var photoQuantity = 25;
+  var PHOTO_QUANTITY = 25;
 
   function getPhotos(quantity) {
     photos = [];
@@ -17,7 +17,7 @@
     }
     return photos;
   }
-  var photos = getPhotos(photoQuantity);
+  var photos = getPhotos(PHOTO_QUANTITY);
 
   function getPicture(photo) {
     var pictureElement = pictureTemplate.cloneNode(true);

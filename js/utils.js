@@ -10,6 +10,10 @@
     return Math.floor(rand);
   }
 
+  function showElement(element) {
+    element.classList.remove('hidden');
+  }
+
   function getRandomElement(arr) {
     var randomindex = Math.floor(Math.random() * arr.length);
     return arr[randomindex];
@@ -17,6 +21,7 @@
   window.utils = {
     getRandomNumber: getRandomNumber,
     getRandomElement: getRandomElement,
-    KEY_CODE: KEY_CODE
+    KEY_CODE: KEY_CODE,
+    showElement: showElement
   };
 })();

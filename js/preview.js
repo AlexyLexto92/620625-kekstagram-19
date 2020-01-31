@@ -7,7 +7,7 @@
   var uploadFileInput = document.querySelector('#upload-file');
 
   function onShowUploadImageContainer() {
-    uploadChangeImageContainer.classList.remove('hidden');
+    window.utils.showElement(uploadChangeImageContainer);
   }
 
   function onCloseUploadImageContainer() {
