@@ -19,17 +19,8 @@
 
   uploadFileInput.addEventListener('change', onShowUploadImageContainer);
 
-  var onEscCloseUploadImageContainer = function (evt) {
-    if (evt.keyCode === window.utils.KEY_CODE.ESC) {
-      onCloseUploadImageContainer();
-      document.removeEventListener('keydown', onEscCloseUploadImageContainer);
-    }
-  };
-
   document.addEventListener('keydown', function (evt) {
-    if (evt.target.className === 'text__description' || evt.target.className === 'text__hashtags') {
-      document.removeEventListener('keydown', onEscCloseUploadImageContainer);
-    } else {
+    if (evt.target.className !== 'text__description' && evt.target.className !== 'text__hashtags' && evt.keyCode === window.utils.KEY_CODE.ESC) {
       onCloseUploadImageContainer();
     }
   });
