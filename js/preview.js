@@ -8,6 +8,7 @@
 
   function onShowUploadImageContainer() {
     window.utils.showElement(uploadChangeImageContainer);
+    uploadChangeImageContainer.focus();
   }
 
   function onCloseUploadImageContainer() {
@@ -19,19 +20,16 @@
   uploadFileInput.addEventListener('change', onShowUploadImageContainer);
 
   var onEscCloseUploadImageContainer = function (evt) {
-    if (evt.keyCode === window.KEY_CODE.ESC) {
+    if (evt.keyCode === window.utils.KEY_CODE.ESC) {
       onCloseUploadImageContainer();
     }
   };
 
-  uploadChangeImageContainer.addEventListener('keydown', onEscCloseUploadImageContainer);
-
-  document.addEventListener('click', function (evt) {
-
-    if (evt.target.tagName !== 'TEXTAREA' || evt.target.tagName !== 'INPUT') {
-      document.addEventListener('keydown', onEscCloseUploadImageContainer);
-    } else {
+  document.addEventListener('keydown', function (evt) {
+    if (evt.target.className === 'text__description' || evt.target.className === 'text__hashtags') {
       document.removeEventListener('keydown', onEscCloseUploadImageContainer);
+    } else {
+      document.addEventListener('keydown', onEscCloseUploadImageContainer);
     }
   });
 
