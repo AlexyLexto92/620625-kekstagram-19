@@ -22,6 +22,7 @@
   var onEscCloseUploadImageContainer = function (evt) {
     if (evt.keyCode === window.utils.KEY_CODE.ESC) {
       onCloseUploadImageContainer();
+      document.removeEventListener('keydown', onEscCloseUploadImageContainer);
     }
   };
 
@@ -29,7 +30,7 @@
     if (evt.target.className === 'text__description' || evt.target.className === 'text__hashtags') {
       document.removeEventListener('keydown', onEscCloseUploadImageContainer);
     } else {
-      document.addEventListener('keydown', onEscCloseUploadImageContainer);
+      onCloseUploadImageContainer();
     }
   });
 
