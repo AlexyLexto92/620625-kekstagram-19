@@ -1,11 +1,11 @@
 'use strict';
 (function () {
+  var PHOTO_QUANTITY = 25;
   var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
   var pictureContainer = document.querySelector('.pictures');
-  var PHOTO_QUANTITY = 25;
 
   function getPhotos(quantity) {
-    photos = [];
+    var photos = [];
     for (var i = 0; i < quantity; i++) {
       photos[i] = {
         url: 'photos/' + (i + 1) + '.jpg',
