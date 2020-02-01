@@ -47,12 +47,13 @@
     xhr.send(data);
 
   };
+  /*
   document.addEventListener('click', function () {
     load(function (data) {
       console.log(data);
     });
   });
-
+*/
   window.backend = {
     load: load,
     upload: upload
