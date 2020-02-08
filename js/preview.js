@@ -1,12 +1,13 @@
 'use strict';
 (function () {
-
+  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   var uploadImageContainer = document.querySelector('.img-upload__preview');
   var uploadImage = uploadImageContainer.querySelector('img');
   var uploadChangeImageContainer = document.querySelector('.img-upload__overlay');
   var uploadFileInput = document.querySelector('#upload-file');
 
   function onShowUploadImageContainer() {
+    window.utils.getUpload(uploadFileInput, uploadImage, FILE_TYPES);
     window.utils.showElement(uploadChangeImageContainer);
     uploadChangeImageContainer.focus();
   }

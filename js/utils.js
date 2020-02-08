@@ -60,6 +60,21 @@
     }
     return d;
   }
+  function getUpload(fileChooser, preview, fileTypes) {
+    var file = fileChooser.files[0];
+    var fileName = file.name.toLowerCase();
+    var matches = fileTypes.some(function (it) {
+      return fileName.endsWith(it);
+    });
+    if (matches) {
+      var reader = new FileReader();
+      reader.addEventListener('load', function () {
+        preview.src = reader.result;
+      });
+
+      reader.readAsDataURL(file);
+    }
+  }
   window.utils = {
     removeElement: removeElement,
     getRandomNumber: getRandomNumber,
@@ -70,5 +85,6 @@
     getPictures: getPictures,
     shuffleArray: shuffleArray,
     debounce: debounce,
+    getUpload: getUpload
   };
 })();
