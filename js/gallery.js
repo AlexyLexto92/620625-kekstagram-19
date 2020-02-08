@@ -1,26 +1,39 @@
 'use strict';
 (function () {
+  var DEBOUNCE_INTERVAL = 300;
   var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
   var pictureContainer = document.querySelector('.pictures');
+  var sortItem = document.querySelector('.img-filters');
+  var filterButtons = document.querySelectorAll('.img-filters__button');
+  var filterContainer = document.querySelector('.img-filters');
 
-  function getPicture(photo) {
-    var pictureElement = pictureTemplate.cloneNode(true);
-    pictureElement.querySelector('.picture__img').src = photo.url;
-    return pictureElement;
-  }
 
-  function getPictures(images) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i <= images.length - 1; i++) {
-      fragment.appendChild(getPicture(images[i]));
-    }
-    pictureContainer.appendChild(fragment);
-    return pictureContainer;
+  function changeSortName() {
+    sortItem.classList.remove('img-filters--inactive');
+    filterContainer.addEventListener('click', function (evt) {
+      if (evt.target.tagName === 'BUTTON') {
+        if (evt.target.classList.contains('img-filters__button--active')) {
+          return;
+        } else {
+          filterButtons.forEach(function (it) {
+            var nameClass = it.className = 'img-filters__button';
+            return nameClass;
+          });
+          evt.target.classList.add('img-filters__button--active');
+        }
+      }
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     window.backend.load(function (data) {
-      getPictures(data);
+      window.utils.getPictures(data);
+      changeSortName();
+      window.utils.debounce(DEBOUNCE_INTERVAL, window.sort.getSort(data));
     });
   });
+  window.gallery = {
+    pictureContainer: pictureContainer,
+    pictureTemplate: pictureTemplate,
+  };
 })();
