@@ -38,7 +38,13 @@
 
   function getPicture(photo) {
     var pictureElement = window.gallery.pictureTemplate.cloneNode(true);
-    pictureElement.querySelector('.picture__img').src = photo.url;
+    var image = pictureElement.querySelector('.picture__img');
+    image.src = photo.url;
+    image.dataset.id = photo.id;
+    pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
+    pictureElement.querySelector('.picture__likes').textContent = photo.likes;
+
+
     return pictureElement;
   }
 

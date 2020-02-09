@@ -26,8 +26,9 @@
     getComments(element.comments, countComents);
 
     bigPictureCommentsLoader.addEventListener('click', function () {
-      countComents = element.comments.length - 1 > countComents + 5 ? countComents + 5 : element.comments.length - 1;
+      countComents = element.comments.length > countComents + 5 ? countComents + 5 : element.comments.length;
       getComments(element.comments, countComents);
+      showComments(element, countComents);
 
       if (countComents === element.comments.length - 1) {
         bigPictureCommentsLoader.classList.add('visually-hidden');
@@ -35,8 +36,8 @@
     })
   }
   function showComments(element, countOfComments) {
-    bigPictureSocialCommentCount.textContent = element.comments.length - 1 >= countOfComments ? countOfComments + ' ' + 'из' + ' ' + element.comments.length - 1 + ' ' + 'комментариев' : element.comments.length + ' ' + 'комментариев';
-    bigPictureAllCommentsCount.textContent = element.comments.length - 1;
+    bigPictureSocialCommentCount.textContent = element.comments.length >= countOfComments ? countOfComments + ' ' + 'из' + ' ' + element.comments.length + ' ' + 'комментариев' : element.comments.length + ' ' + 'комментариев';
+    bigPictureAllCommentsCount.textContent = element.comments.length;
   }
 
   function getComment(coment) {
@@ -48,15 +49,18 @@
   }
 
   function getComments(comments, count) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i <= count - 1; i++) {
-      fragment.appendChild(getComment(comments[i]));
+    if (comments.length > 0) {
+      var numb = comments.length < count ? comments.length -1 : count - 1;
+      var fragment = document.createDocumentFragment();
+      for (var i = 0; i <= numb; i++) {
+        fragment.appendChild(getComment(comments[i]));
+      }
+      if (count >= comments.length) {
+        bigPictureCommentsLoader.classList.add('visually-hidden');
+      }
+      bigPictureSocialCooments.appendChild(fragment);
+      return bigPictureSocialCooments;
     }
-    if (count >= comments.length) {
-      bigPictureCommentsLoader.classList.add('visually-hidden');
-    }
-    bigPictureSocialCooments.appendChild(fragment);
-    return bigPictureSocialCooments;
   }
 
   function onCloseBigPicture() {
