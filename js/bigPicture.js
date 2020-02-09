@@ -24,10 +24,19 @@
 
     showComments(element, countComents);
     getComments(element.comments, countComents);
+
+    bigPictureCommentsLoader.addEventListener('click', function () {
+      countComents = element.comments.length - 1 > countComents + 5 ? countComents + 5 : element.comments.length - 1;
+      getComments(element.comments, countComents);
+
+      if (countComents === element.comments.length - 1) {
+        bigPictureCommentsLoader.classList.add('visually-hidden');
+      }
+    })
   }
   function showComments(element, countOfComments) {
-    bigPictureSocialCommentCount.textContent = element.comments.length >= countOfComments ? countOfComments + ' ' + 'из' + ' ' + element.comments.length + ' ' + 'комментариев' : element.comments.length + ' ' + 'комментариев';
-    bigPictureAllCommentsCount.textContent = element.comments.length;
+    bigPictureSocialCommentCount.textContent = element.comments.length - 1 >= countOfComments ? countOfComments + ' ' + 'из' + ' ' + element.comments.length - 1 + ' ' + 'комментариев' : element.comments.length + ' ' + 'комментариев';
+    bigPictureAllCommentsCount.textContent = element.comments.length - 1;
   }
 
   function getComment(coment) {

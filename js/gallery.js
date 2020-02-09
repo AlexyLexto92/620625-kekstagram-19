@@ -32,7 +32,7 @@
         it.id = index;
       });
       window.utils.getPictures(data);
-      window.bigPicture.showBigPicture(data, 1);
+      window.bigPicture.showBigPicture(data, 2);
       changeSortName();
       window.utils.debounce(DEBOUNCE_INTERVAL, window.sort.getSort(data));
     });
