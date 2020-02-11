@@ -81,7 +81,12 @@
       reader.readAsDataURL(file);
     }
   }
+
+  function hideElement(element) {
+    element.classList.add('visually-hidden');
+  }
   window.utils = {
+    hideElement: hideElement,
     removeElement: removeElement,
     getRandomNumber: getRandomNumber,
     getRandomElement: getRandomElement,

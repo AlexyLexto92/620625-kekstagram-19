@@ -7,7 +7,6 @@
   var filterButtons = document.querySelectorAll('.img-filters__button');
   var filterContainer = document.querySelector('.img-filters');
 
-
   function changeSortName() {
     sortItem.classList.remove('img-filters--inactive');
     filterContainer.addEventListener('click', function (evt) {
@@ -27,12 +26,18 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     window.backend.load(function (data) {
-
-      data.forEach(function(it,index){
+      data.forEach(function (it, index) {
         it.id = index;
       });
       window.utils.getPictures(data);
-      window.bigPicture.showBigPicture(data, 16);
+      window.bigPicture.showBigPicture(data, 0);
+      pictureContainer.addEventListener('click', function (evt) {
+        var target = evt.target;
+        if (target.tagName === 'IMG') {
+          var id = target.dataset.id;
+          window.bigPicture.showBigPicture(data, id);
+        }
+      });
       changeSortName();
       window.utils.debounce(DEBOUNCE_INTERVAL, window.sort.getSort(data));
     });
