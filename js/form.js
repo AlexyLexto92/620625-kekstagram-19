@@ -12,19 +12,24 @@
     if (hashtagText.length > 0) {
       var re = /(?=#)/g;
       var hashtags = hashtagText.split(re);
-      debugger
-      var a = checkHashtag(hashtags);
+    if( checkHashtag(hashtags)){
+      console.log('true');
+    };
+
     }
 
   })
 
   function checkHashtag(tagsArray) {
-    return tagsArray.forEach(function (elem) {
+    debugger
+   return tagsArray.forEach(function (elem) {
       var elemArray = elem.split('');
       if (elemArray.length <= HASHTAG_LENGHT.MAX && elemArray.length > HASHTAG_LENGHT.MIN && elemArray[0] == '#') {
-        var result = true;
+          return true;
       }
-      return result;
+      else{
+        return false;
+      }
     })
   }
 })();
