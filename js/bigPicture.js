@@ -13,11 +13,12 @@
   var bigPictureCommentsLoader = bigPicture.querySelector('.social__comments-loader');
 
   function showBigPicture(data, showElement) {
-    var countComentsFirst = 0;
+    var countComents = 0;
     var countComentsStep = 5;
-    var countComents = countComentsFirst + countComentsStep;
+    countComents += countComentsStep;
     bigPicture.classList.remove('hidden');
-    var element = data[showElement];
+    var element = null;
+    element = data[showElement];
     bigPictureImg.src = element.url;
     bigPictureImg.alt = element.description;
 
@@ -28,15 +29,13 @@
     getComments(element.comments, countComents);
 
     bigPictureCommentsLoader.addEventListener('click', function () {
-      countComents = element.comments.length > countComents + countComentsStep ? element.comments.length : countComents + countComentsStep;
+      element = data[showElement];
+      countComents = element.comments.length < countComents + countComentsStep ? element.comments.length : countComents + countComentsStep;
       getComments(element.comments, countComents);
       showComments(element, countComents);
-
-      if (countComents >= element.comments.length) {
-        window.utils.hideElement(bigPictureCommentsLoader);
-      }
     });
   }
+
   function showComments(element, countOfComments) {
     bigPictureSocialCommentCount.textContent = element.comments.length >= countOfComments ? countOfComments + ' ' + 'из' + ' ' + element.comments.length + ' ' + 'комментариев' : element.comments.length + ' ' + 'комментариев';
     bigPictureAllCommentsCount.textContent = element.comments.length;
@@ -56,10 +55,11 @@
       var fragment = document.createDocumentFragment();
       for (var i = 0; i <= numb; i++) {
         fragment.appendChild(getComment(comments[i]));
+        if (count > comments.length) {
+          window.utils.hideElement(bigPictureCommentsLoader);
+        }
       }
-      if (count >= comments.length) {
-        bigPictureCommentsLoader.classList.add('visually-hidden');
-      }
+
     }
     bigPictureSocialCooments.appendChild(fragment);
     return bigPictureSocialCooments;
@@ -77,7 +77,8 @@
     }
   });
   window.bigPicture = {
-    showBigPicture: showBigPicture
+    showBigPicture: showBigPicture,
+    onCloseBigPicture: onCloseBigPicture
   };
 
 })();

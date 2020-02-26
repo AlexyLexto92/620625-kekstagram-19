@@ -4,6 +4,26 @@
     ESC: 27,
     ENTER: 13,
   };
+  var STATUS = {
+    SUCCESS: 'success',
+    ERROR: 'error'
+  };
+  var successScreenTemplate = document.querySelector('#success').content.querySelector('.success');
+  var errorScreenTemplate = document.querySelector('#error').content.querySelector('.error');
+  var main = document.querySelector('main');
+
+  function getScreen(status) {
+    var screenElement = null;
+    if (status === STATUS.SUCCESS) {
+      screenElement = successScreenTemplate.cloneNode(true);
+    } else {
+      screenElement = errorScreenTemplate.cloneNode(true);
+    }
+    return screenElement;
+  }
+  function getStatusScreen(status) {
+    main.appendChild(getScreen(status));
+  }
 
   function debounce(time, cb) {
     var lastTimeout = null;
@@ -96,6 +116,8 @@
     getPictures: getPictures,
     shuffleArray: shuffleArray,
     debounce: debounce,
-    getUpload: getUpload
+    getUpload: getUpload,
+    STATUS: STATUS,
+    getStatusScreen: getStatusScreen
   };
 })();
