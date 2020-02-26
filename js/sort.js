@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  function getSort(data) {
+  function get(data) {
     var sortItem = document.querySelector('.img-filters');
     sortItem.addEventListener('click', function (evt) {
       var target = evt.target.id;
@@ -44,6 +44,6 @@
     window.utils.getPictures(sortedDiscussedImages);
   }
   window.sort = {
-    getSort: getSort,
+    get: get,
   };
 })();

@@ -31,16 +31,16 @@
       });
       window.utils.getPictures(data);
       var id = 0;
-      window.bigPicture.showBigPicture(data, id);
+      window.bigPicture.show(data, id);
       pictureContainer.addEventListener('click', function (evt) {
         var target = evt.target;
         if (target.tagName === 'IMG') {
           id = Number(target.dataset.id);
-          window.bigPicture.showBigPicture(data, id);
+          window.bigPicture.show(data, id);
         }
       });
       changeSortName();
-      window.utils.debounce(DEBOUNCE_INTERVAL, window.sort.getSort(data));
+      window.utils.debounce(DEBOUNCE_INTERVAL, window.sort.get(data));
     }, window.backend.createEror);
     document.removeEventListener('DOMContentLoaded', showApp);
   }

@@ -103,7 +103,7 @@
   }
 
   function hideElement(element) {
-    element.classList.add('visually-hidden');
+    element.classList.add('hidden');
   }
   window.utils = {
     hideElement: hideElement,
