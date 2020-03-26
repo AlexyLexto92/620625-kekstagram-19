@@ -97,7 +97,6 @@
       reader.addEventListener('load', function () {
         preview.src = reader.result;
       });
-
       reader.readAsDataURL(file);
     }
   }

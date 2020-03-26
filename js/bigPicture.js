@@ -12,7 +12,7 @@
   var bigPictureSocialCooment = bigPictureSocialCooments.querySelector('.social__comment');
   var bigPictureCommentsLoader = bigPicture.querySelector('.social__comments-loader');
 
-  function show/*BigPicture*/(data, showElement) {
+  function show(data, showElement) {
     var countComents = 0;
     var countComentsStep = 5;
     countComents += countComentsStep;
@@ -65,20 +65,20 @@
     return bigPictureSocialCooments;
   }
 
-  function onClose/*BigPicture*/() {
-  window.utils.hideElement(bigPicture);
+  function onClose() {
+    window.utils.hideElement(bigPicture);
     window.utils.showElement(bigPictureCommentsLoader);
   }
-  bigPictureCloseButton.addEventListener('click', onClose/*BigPicture*/);
+  bigPictureCloseButton.addEventListener('click', onClose);
 
   document.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.utils.KEY_CODE.ESC) {
-      onClose/*BigPicture*/();
+      onClose();
     }
   });
   window.bigPicture = {
-    show/*BigPicture*/: show/*BigPicture*/,
-    onClose/*BigPicture*/: onClose/*BigPicture*/
+    show: show,
+    onClose: onClose
   };
 
 })();
